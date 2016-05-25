@@ -92,7 +92,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 				int assetIntID = 0;
 				if(assetPath.startsWith("/")){
 				    assetIntID = soundPool.load(assetPath,1);
-				else {
+				} else {
 				    Context ctx = cordova.getActivity().getApplicationContext();
 				    AssetManager am = ctx.getResources().getAssets();
 				    AssetFileDescriptor afd = am.openFd("www/" + assetPath);
