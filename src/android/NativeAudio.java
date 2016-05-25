@@ -219,9 +219,9 @@ File[] listOfFiles = folder.listFiles();
 
     for (int i = 0; i < listOfFiles.length; i++) {
       if (listOfFiles[i].isFile()) {
-        Log.d(LOGTAG, ("File " + listOfFiles[i].getName());
+        Log.d(LOGTAG, ("File " + listOfFiles[i].getName()));
       } else if (listOfFiles[i].isDirectory()) {
-        Log.d(LOGTAG, ("Directory " + listOfFiles[i].getName());
+        Log.d(LOGTAG, ("Directory " + listOfFiles[i].getName()));
       }
     } /* end dw test*/
     
