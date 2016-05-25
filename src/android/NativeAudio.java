@@ -8,6 +8,7 @@
 package com.rjfun.cordova.plugin.nativeaudio;
 
 import java.io.IOException;
+import android.media.SoundPool;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
@@ -98,7 +99,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 				    AssetFileDescriptor afd = am.openFd("www/" + assetPath);
 				    assetIntID = soundPool.load(afd, 1);
 				}
-				assetMap.put(audioID, assetIntID);
+				soundPool.put(audioID, assetIntID);
 				
 				
 				// end dw
