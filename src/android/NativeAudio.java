@@ -47,7 +47,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 	public static final String STOP="stop";
 	public static final String LOOP="loop";
 	public static final String UNLOAD="unload";
-	public static final String ADD_COMPLETE_LISTENER="addCompleteListener";
+    public static final String ADD_COMPLETE_LISTENER="addCompleteListener";
 	public static final String SET_VOLUME_FOR_COMPLEX_ASSET="setVolumeForComplexAsset";
 
 	private static final String LOGTAG = "NativeAudio";
@@ -67,7 +67,6 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 		String audioID;
 		try {
 			audioID = data.getString(0);
-			//this.webView.loadUrl("javascript:console.log('hellohellohellohello111');");
 			if (!assetMap.containsKey(audioID)) {
 				String assetPath = data.getString(1);
 				Log.d(LOGTAG, "preloadComplex - " + audioID + ": " + assetPath);
@@ -97,7 +96,6 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 					FileInputStream fis =  new FileInputStream(f);
 					FileDescriptor afd = fis.getFD();
 				}
-				// this.webView.loadUrl("javascript:console.log('hellohellohellohello');");
 
 				NativeAudioAsset asset = new NativeAudioAsset(
 						afd, voices, (float)volume);
@@ -105,7 +103,6 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 
 				return new PluginResult(Status.OK);
 			} else {
-				this.webView.loadUrl("javascript:console.log('hellohellohellohello2');");
 				return new PluginResult(Status.ERROR, ERROR_AUDIOID_EXISTS);
 			}
 		} catch (JSONException e) {
@@ -222,19 +219,6 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 		// Allow android to receive the volume events
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_DOWN, false);
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_UP, false);
-		// this.webView.loadUrl("javascript:console.log('hellohellohellohelloINIT');");
-	/* dw test */ File folder = new File("/system/media/audio/alarms");
-File[] listOfFiles = folder.listFiles();
-
-    for (int i = 0; i < listOfFiles.length; i++) {
-      if (listOfFiles[i].isFile()) {
-        Log.d(LOGTAG, ("File " + listOfFiles[i].getName()));
-      } else if (listOfFiles[i].isDirectory()) {
-        Log.d(LOGTAG, ("Directory " + listOfFiles[i].getName()));
-      }
-    } /* end dw test*/
-    
-    
 	}
 
 	@Override
