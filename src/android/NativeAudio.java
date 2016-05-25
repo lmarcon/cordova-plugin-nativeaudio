@@ -8,7 +8,6 @@
 package com.rjfun.cordova.plugin.nativeaudio;
 
 import java.io.IOException;
-import android.media.SoundPool;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
@@ -83,26 +82,16 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 					voices = data.getInt(3);
 				}
 
-				//String fullPath = "www/".concat(assetPath);
+				String fullPath = "www/".concat(assetPath);
 
-				//NativeAudioAsset asset = new NativeAudioAsset(afd, voices, (float)volume);
-				//assetMap.put(audioID, asset);
-				// dw 
-				Log.d( LOGTAG, "dw new code executing nao" );	
-				int assetIntID = 0;
-				if(assetPath.startsWith("/")){
-				    assetIntID = soundPool.load(assetPath,1);
-				    
-				} else {
-				    Context ctx = cordova.getActivity().getApplicationContext();
-				    AssetManager am = ctx.getResources().getAssets();
-				    AssetFileDescriptor afd = am.openFd("www/" + assetPath);
-				    assetIntID = soundPool.load(afd, 1);
-				}
-				soundPool.put(audioID, assetIntID);
-				
-				
-				// end dw
+				Context ctx = cordova.getActivity().getApplicationContext();
+				AssetManager am = ctx.getResources().getAssets();
+				AssetFileDescriptor afd = am.openFd(fullPath);
+
+				NativeAudioAsset asset = new NativeAudioAsset(
+						afd, voices, (float)volume);
+				assetMap.put(audioID, asset);
+
 				return new PluginResult(Status.OK);
 			} else {
 				return new PluginResult(Status.ERROR, ERROR_AUDIOID_EXISTS);
