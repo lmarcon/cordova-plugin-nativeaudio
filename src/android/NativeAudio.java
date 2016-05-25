@@ -44,7 +44,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 	public static final String STOP="stop";
 	public static final String LOOP="loop";
 	public static final String UNLOAD="unload";
-    public static final String ADD_COMPLETE_LISTENER="addCompleteListener";
+	public static final String ADD_COMPLETE_LISTENER="addCompleteListener";
 	public static final String SET_VOLUME_FOR_COMPLEX_ASSET="setVolumeForComplexAsset";
 
 	private static final String LOGTAG = "NativeAudio";
@@ -87,7 +87,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 				Context ctx = cordova.getActivity().getApplicationContext();
 				AssetManager am = ctx.getResources().getAssets();
 				AssetFileDescriptor afd = am.openFd(fullPath);
-				webView.loadUrl("javascript:console.log('hello');");
+				this.webView.loadUrl("javascript:console.log('hellohellohellohello');");
 
 				NativeAudioAsset asset = new NativeAudioAsset(
 						afd, voices, (float)volume);
