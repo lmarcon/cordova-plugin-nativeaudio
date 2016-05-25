@@ -19,7 +19,7 @@ public class NativeAudioAsset
 	private ArrayList<NativeAudioAssetComplex> voices;
 	private int playIndex = 0;
 	
-	public NativeAudioAsset(AssetFileDescriptor afd, int numVoices, float volume) throws IOException
+	public NativeAudioAsset(FileDescriptor afd, int numVoices, float volume)
 	{
 		voices = new ArrayList<NativeAudioAssetComplex>();
 		
