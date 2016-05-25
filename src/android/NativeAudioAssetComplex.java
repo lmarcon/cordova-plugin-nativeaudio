@@ -35,7 +35,7 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 	{
 		state = INVALID;
 		mp = new MediaPlayer();
-        	//mp.setOnCompletionListener(this);
+        	mp.setOnCompletionListener(this);
         	mp.setOnPreparedListener(this);
 		//mp.setDataSource( afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
 		mp.setDataSource(afd, 0, length);
@@ -59,7 +59,6 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 			mp.setLooping(loop);
 			mp.seekTo(0);
 			mp.start();
-			mp.setOnCompletionListener(this);
 		}
 		if ( !playing && state == PREPARED )
 		{
@@ -71,7 +70,6 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 			state = (loop ? PENDING_LOOP : PENDING_PLAY);
 			mp.setLooping(loop);
 			mp.start();
-			mp.setOnCompletionListener(this);
 		}
 	}
 
@@ -95,7 +93,6 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 	public void resume()
 	{
 		mp.start();
-		mp.setOnCompletionListener(this);
 	}
 
     public void stop()
@@ -145,7 +142,6 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 			mp.setLooping(false);
 			mp.seekTo(0);
 			mp.start();
-			mp.setOnCompletionListener(this);
 			state = PLAYING;
 		}
 		else if ( state == PENDING_LOOP )
@@ -153,7 +149,6 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 			mp.setLooping(true);
 			mp.seekTo(0);
 			mp.start();
-			mp.setOnCompletionListener(this);
 			state = LOOPING;
 		}
 		else
