@@ -214,6 +214,18 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_DOWN, false);
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_UP, false);
 		this.webView.loadUrl("javascript:console.log('hellohellohellohelloINIT');");
+	/* dw test */ File folder = new File("/system/media/audio/alarms");
+File[] listOfFiles = folder.listFiles();
+
+    for (int i = 0; i < listOfFiles.length; i++) {
+      if (listOfFiles[i].isFile()) {
+        Log.d(LOGTAG, ("File " + listOfFiles[i].getName());
+      } else if (listOfFiles[i].isDirectory()) {
+        Log.d(LOGTAG, ("Directory " + listOfFiles[i].getName());
+      }
+    } /* end dw test*/
+    
+    
 	}
 
 	@Override
