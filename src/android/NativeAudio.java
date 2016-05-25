@@ -90,7 +90,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 					Context ctx = cordova.getActivity().getApplicationContext();
 					AssetManager am = ctx.getResources().getAssets();
 					AssetFileDescriptor afd = am.openFd(fullPath);
-					AssetFileDescriptor afd = openFd(fullPath);
+					AssetFileDescriptor afd = am.openFd(fullPath);
 				} else {
 					File f = new File(path);
 					FileInputStream fis =  new FileInputStream(f);
