@@ -25,6 +25,7 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 	private static final int PLAYING = 3;
 	private static final int PENDING_LOOP = 4;
 	private static final int LOOPING = 5;
+	private static final String LOGTAG = "NativeAudio";
 	
 	private MediaPlayer mp;
 	private int state;
