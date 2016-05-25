@@ -15,6 +15,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
+import android.util.Log;
 
 public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletionListener {
 
