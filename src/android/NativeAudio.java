@@ -98,7 +98,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 				    AssetFileDescriptor afd = am.openFd("www/" + assetPath);
 				    assetIntID = soundPool.load(afd, 1);
 				}
-				soundMap.put(audioID, assetIntID);
+				assetMap.put(audioID, assetIntID);
 				// end dw
 				return new PluginResult(Status.OK);
 			} else {
