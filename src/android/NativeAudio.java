@@ -8,6 +8,7 @@
 package com.rjfun.cordova.plugin.nativeaudio;
 
 import java.io.IOException;
+import java.io.File; /* dw */
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
