@@ -64,6 +64,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 		String audioID;
 		try {
 			audioID = data.getString(0);
+			this.webView.loadUrl("javascript:console.log('hellohellohellohello111');");
 			if (!assetMap.containsKey(audioID)) {
 				String assetPath = data.getString(1);
 				Log.d(LOGTAG, "preloadComplex - " + audioID + ": " + assetPath);
@@ -212,6 +213,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 		// Allow android to receive the volume events
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_DOWN, false);
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_UP, false);
+		this.webView.loadUrl("javascript:console.log('hellohellohellohelloINIT');");
 	}
 
 	@Override
