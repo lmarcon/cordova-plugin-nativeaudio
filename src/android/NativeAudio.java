@@ -65,7 +65,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 		String audioID;
 		try {
 			audioID = data.getString(0);
-			this.webView.loadUrl("javascript:console.log('hellohellohellohello111');");
+			//this.webView.loadUrl("javascript:console.log('hellohellohellohello111');");
 			if (!assetMap.containsKey(audioID)) {
 				String assetPath = data.getString(1);
 				Log.d(LOGTAG, "preloadComplex - " + audioID + ": " + assetPath);
@@ -89,7 +89,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 				Context ctx = cordova.getActivity().getApplicationContext();
 				AssetManager am = ctx.getResources().getAssets();
 				AssetFileDescriptor afd = am.openFd(fullPath);
-				this.webView.loadUrl("javascript:console.log('hellohellohellohello');");
+				// this.webView.loadUrl("javascript:console.log('hellohellohellohello');");
 
 				NativeAudioAsset asset = new NativeAudioAsset(
 						afd, voices, (float)volume);
@@ -214,7 +214,7 @@ public class NativeAudio extends CordovaPlugin implements AudioManager.OnAudioFo
 		// Allow android to receive the volume events
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_DOWN, false);
 		this.webView.setButtonPlumbedToJs(KeyEvent.KEYCODE_VOLUME_UP, false);
-		this.webView.loadUrl("javascript:console.log('hellohellohellohelloINIT');");
+		// this.webView.loadUrl("javascript:console.log('hellohellohellohelloINIT');");
 	/* dw test */ File folder = new File("/system/media/audio/alarms");
 File[] listOfFiles = folder.listFiles();
 
