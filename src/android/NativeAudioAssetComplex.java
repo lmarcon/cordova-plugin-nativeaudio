@@ -158,7 +158,7 @@ public class NativeAudioAssetComplex implements OnPreparedListener, OnCompletion
 	
 	public void onCompletion(MediaPlayer mPlayer)
 	{
-		Log.d(LOGTAG, 'NA onCompletion state='+state);
+		Log.d(LOGTAG, "NA onCompletion state=" + state);
 		if (state != LOOPING)
 		{
 			this.state = INVALID;
