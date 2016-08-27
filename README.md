@@ -47,7 +47,7 @@ Download it at the ngCordova [website](http://www.ngcordova.com) or the [reposit
 
 Via Cordova CLI:
 ```bash
-cordova plugin add cordova-plugin-nativeaudio
+cordova plugin add https://github.com/lmarcon/cordova-plugin-nativeaudio.git
 ```
 
 ##Usage
@@ -86,25 +86,25 @@ Loads an audio file into memory. Optimized for background music / ambient sound.
 Uses highlevel native APIs with a larger footprint. (iOS: AVAudioPlayer).
 Can be stopped / looped and used with multiple voices. Can be faded in and out using the delay parameter.
 
+* params
+ * id - string unique ID for the audio file
+ * assetPath - the full path to the audio asset
+ * volume - the volume of the preloaded sound (0.1 to 1.0)
+ * voices - the number of multichannel voices available
+ * successCallback - success callback function
+ * errorCallback - error callback function
+
 
 ####Volume & Voices
 
 The default **volume** is 1.0, a lower default can be set by using a numerical value from 0.1 to 1.0.
 
-By default, there is 1 **vice**, that is: one instance that will be stopped & restarted on play().
+By default, there is 1 **voice**, that is: one instance that will be stopped & restarted on play().
 If there are multiple voices (number greater than 0), it will cycle through voices to play overlapping audio.
 
 Change the float-based **delay** parameter to increase the fade-in/fade-out timing.
 
 ###Playback
-
-* params
- * id - string unique ID for the audio file
- * assetPath - the relative path to the audio asset within the www directory
- * volume - the volume of the preloaded sound (0.1 to 1.0)
- * voices - the number of multichannel voices available
- * successCallback - success callback function
- * errorCallback - error callback function
 
 ```javascript
 play: function (id, successCallback, errorCallback, completeCallback)
@@ -164,6 +164,59 @@ Changes the volume for preloaded complex assets.
  * successCallback - success callback function
  * errorCallback - error callback function
 
+## Implemented only for Android (does anybody want to help on iOS? :))
+
+```javascript
+pause: function (id, successCallback, errorCallback)
+```
+
+Pauses an audio asset.
+
+* params:
+ * id - string unique ID for the audio file
+ * successCallback - success callback function
+ * errorCallback - error callback function
+ * completeCallback - error callback function
+
+```javascript
+getDuration: function (id, successCallback, errorCallback)
+```
+
+Retrieves the asset's duration in msecs. The first parameter of `successCallback` is a JSON object with a member `duration`.
+ 
+ 
+* params:
+ * ID - string unique ID for the audio file
+ * successCallback - success callback function
+ * errorCallback - error callback function
+
+```javascript
+getPosition: function (id, successCallback, errorCallback)
+```
+
+Retrieves the asset's current position in msecs. The first parameter of `successCallback` is a JSON object with a member `position`.
+If the asset never played yet, the returned position value is -1.
+ 
+ 
+* params:
+ * ID - string unique ID for the audio file
+ * successCallback - success callback function
+ * errorCallback - error callback function
+
+```javascript
+setPosition: function (id, position, successCallback, errorCallback)
+```
+
+Sets the asset's current position in msecs.
+ 
+ 
+* params:
+ * ID - string unique ID for the audio file
+ * position - the position in msecs to seek the asset to.
+ * successCallback - success callback function
+ * errorCallback - error callback function
+
+
 ## Example Code
 
 In this example, the resources reside in a relative path under the Cordova root folder "www/".
@@ -187,7 +240,6 @@ if( window.plugins && window.plugins.NativeAudio ) {
 	window.plugins.NativeAudio.play( 'click' );
 	window.plugins.NativeAudio.loop( 'music' );
 
-
 	// Stop multichannel clip after 60 seconds
 	window.setTimeout( function(){
 
@@ -197,6 +249,26 @@ if( window.plugins && window.plugins.NativeAudio ) {
 		window.plugins.NativeAudio.unload( 'click' );
 
 	}, 1000 * 60 );
+
+	// =============
+	// Android only:
+	// =============
+
+	// Pause
+	window.plugins.NativeAudio.pause( 'music' );
+
+	// GetDuration
+	window.plugins.NativeAudio.getDuration( 'music', function( res ){
+		console.log( "duration: ", res.duration );
+	});
+
+	// GetPosition
+	window.plugins.NativeAudio.getPosition( 'music', function( res ){
+		console.log( "position: ", res.position );
+	});
+
+	// SetPosition - setting asset position to 5 seconds
+	window.plugins.NativeAudio.setPosition( 'music', 5000 );
 }
 ```
 
